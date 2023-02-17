@@ -9,6 +9,9 @@ use App\Http\Requests\Admin\Credential\IndexCredential;
 use App\Http\Requests\Admin\Credential\StoreCredential;
 use App\Http\Requests\Admin\Credential\UpdateCredential;
 use App\Models\Credential;
+use App\Models\State;
+use App\Models\Category;
+use App\Models\Service;
 use Brackets\AdminListing\Facades\AdminListing;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -64,8 +67,10 @@ class CredentialsController extends Controller
     public function create()
     {
         $this->authorize('admin.credential.create');
-
-        return view('admin.credential.create');
+        //$state = State::all();
+        $category = Category::all();
+        $service = Service::all();
+        return view('admin.credential.create',compact('category','service'));
     }
 
     /**
@@ -78,6 +83,9 @@ class CredentialsController extends Controller
     {
         // Sanitize input
         $sanitized = $request->getSanitized();
+        //$sanitized ['state_id']=  $request->getStateId();
+        $sanitized ['category_id']=  $request->getCategoryId();
+        $sanitized ['service_id']=  $request->getServiceId();
 
         // Store the Credential
         $credential = Credential::create($sanitized);
@@ -114,9 +122,14 @@ class CredentialsController extends Controller
     {
         $this->authorize('admin.credential.edit', $credential);
 
+        $category = Category::all();
+        $service = Service::all();
 
         return view('admin.credential.edit', [
             'credential' => $credential,
+            'category'=>$category,
+            'service'=>$service,
+
         ]);
     }
 
@@ -131,6 +144,9 @@ class CredentialsController extends Controller
     {
         // Sanitize input
         $sanitized = $request->getSanitized();
+        $sanitized ['category_id']=  $request->getCategoryId();
+        $sanitized ['service_id']=  $request->getServiceId();
+
 
         // Update changed values Credential
         $credential->update($sanitized);

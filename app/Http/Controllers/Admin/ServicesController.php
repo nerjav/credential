@@ -9,6 +9,7 @@ use App\Http\Requests\Admin\Service\IndexService;
 use App\Http\Requests\Admin\Service\StoreService;
 use App\Http\Requests\Admin\Service\UpdateService;
 use App\Models\Service;
+use App\Models\State;
 use Brackets\AdminListing\Facades\AdminListing;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -64,8 +65,9 @@ class ServicesController extends Controller
     public function create()
     {
         $this->authorize('admin.service.create');
+        $state = state::all();
 
-        return view('admin.service.create');
+        return view('admin.service.create',compact('state'));
     }
 
     /**
@@ -78,6 +80,8 @@ class ServicesController extends Controller
     {
         // Sanitize input
         $sanitized = $request->getSanitized();
+        $sanitized ['service_id']=  $request->getServiceId();
+        $sanitized ['state_id']=  $request->getStateId();
 
         // Store the Service
         $service = Service::create($sanitized);
@@ -113,10 +117,12 @@ class ServicesController extends Controller
     public function edit(Service $service)
     {
         $this->authorize('admin.service.edit', $service);
+        $state = State::all();
 
 
         return view('admin.service.edit', [
             'service' => $service,
+            'state'=>$state,
         ]);
     }
 

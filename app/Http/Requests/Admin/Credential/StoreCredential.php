@@ -29,9 +29,9 @@ class StoreCredential extends FormRequest
             'descripcion' => ['required', 'string'],
             'url' => ['required', 'string'],
             'password' => ['required', 'confirmed', 'min:7', 'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9]).*$/', 'string'],
-            'category_id' => ['required', 'integer'],
-            'service_id' => ['required', 'integer'],
-            
+            'category' => ['required'],
+            'service' => ['required'],
+
         ];
     }
 
@@ -48,4 +48,17 @@ class StoreCredential extends FormRequest
 
         return $sanitized;
     }
+
+
+
+    public function getCategoryId()
+    {
+        return $this->get('category')['id'];
+    }
+
+    public function getServiceId()
+    {
+        return $this->get('service')['id'];
+    }
+
 }

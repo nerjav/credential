@@ -17,12 +17,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/', function () {
+    return view('admin.credentials');
+});
+
+
+Route::get('/index', 'App\Http\Controllers\HomeController@index');
 
 /* Auto-generated admin routes */
 Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
     Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
         Route::prefix('admin-users')->name('admin-users/')->group(static function() {
-            Route::get('/',                                             'AdminUsersController@index')->name('index');
+            Route::get('/',                                             'AdminUsersController@index')->name('admin.credentials');
             Route::get('/create',                                       'AdminUsersController@create')->name('create');
             Route::post('/',                                            'AdminUsersController@store')->name('store');
             Route::get('/{adminUser}/impersonal-login',                 'AdminUsersController@impersonalLogin')->name('impersonal-login');
@@ -70,6 +76,19 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
             Route::post('/bulk-destroy',                                'CredentialsController@bulkDestroy')->name('bulk-destroy');
             Route::post('/{credential}',                                'CredentialsController@update')->name('update');
             Route::delete('/{credential}',                              'CredentialsController@destroy')->name('destroy');
+        });
+    });
+});
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('credentials')->name('credentials/')->group(static function() {
+            Route::get('/', 'CredentialsController@index')->name('index');
+            Route::get('/create', 'CredentialsController@create')->name('create');
+            Route::post('/', 'CredentialsController@store')->name('store');
+            Route::get('/{credential}/edit', 'CredentialsController@edit')->name('edit');
+            Route::post('/bulk-destroy', 'CredentialsController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{credential}', 'CredentialsController@update')->name('update');
+            Route::delete('/{credential}', 'CredentialsController@destroy')->name('destroy');
         });
     });
 });

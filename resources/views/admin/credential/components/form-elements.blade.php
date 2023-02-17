@@ -33,7 +33,18 @@
 <div class="form-group row align-items-center" :class="{'has-danger': errors.has('category_id'), 'has-success': fields.category_id && fields.category_id.valid }">
     <label for="category_id" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.credential.columns.category_id') }}</label>
         <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
-        <input type="text" v-model="form.category_id" v-validate="'required|integer'" @input="validate($event)" class="form-control" :class="{'form-control-danger': errors.has('category_id'), 'form-control-success': fields.category_id && fields.category_id.valid}" id="category_id" name="category_id" placeholder="{{ trans('admin.credential.columns.category_id') }}">
+
+     {{-- <input type="text" v-model="form.category_id" v-validate="'required|integer'" @input="validate($event)" class="form-control" :class="{'form-control-danger': errors.has('category_id'), 'form-control-success': fields.category_id && fields.category_id.valid}" id="category_id" name="category_id" placeholder="{{ trans('admin.credential.columns.category_id') }}"> --}}
+     <multiselect
+            v-model="form.category"
+            :options="category"
+            :multiple="false"
+            track-by="id"
+            label="name"
+            :taggable="true"
+            tag-placeholder=""
+            placeholder="{{ trans('admin.detail-help.columns.category_id') }}">
+        </multiselect>
         <div v-if="errors.has('category_id')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('category_id') }}</div>
     </div>
 </div>
@@ -41,7 +52,17 @@
 <div class="form-group row align-items-center" :class="{'has-danger': errors.has('service_id'), 'has-success': fields.service_id && fields.service_id.valid }">
     <label for="service_id" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.credential.columns.service_id') }}</label>
         <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
-        <input type="text" v-model="form.service_id" v-validate="'required|integer'" @input="validate($event)" class="form-control" :class="{'form-control-danger': errors.has('service_id'), 'form-control-success': fields.service_id && fields.service_id.valid}" id="service_id" name="service_id" placeholder="{{ trans('admin.credential.columns.service_id') }}">
+        {{-- <input type="text" v-model="form.service_id" v-validate="'required|integer'" @input="validate($event)" class="form-control" :class="{'form-control-danger': errors.has('service_id'), 'form-control-success': fields.service_id && fields.service_id.valid}" id="service_id" name="service_id" placeholder="{{ trans('admin.credential.columns.service_id') }}"> --}}
+        <multiselect
+            v-model="form.service"
+            :options="service"
+            :multiple="false"
+            track-by="id"
+            label="name"
+            :taggable="true"
+            tag-placeholder=""
+            placeholder="{{ trans('admin.detail-help.columns.service_id') }}">
+        </multiselect>
         <div v-if="errors.has('service_id')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('service_id') }}</div>
     </div>
 </div>

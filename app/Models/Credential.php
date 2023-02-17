@@ -12,21 +12,32 @@ class Credential extends Model
         'password',
         'category_id',
         'service_id',
-    
+
     ];
-    
+
     protected $hidden = [
         'password',
-    
+
     ];
-    
+
     protected $dates = [
         'created_at',
         'updated_at',
-    
+
     ];
-    
+
     protected $appends = ['resource_url'];
+    protected $with = ['category','service'];
+
+    public function category()
+    {
+        return $this->belongsTo('App\Models\Category');
+    }
+
+    public function service()
+    {
+        return $this->belongsTo('App\Models\Service');
+    }
 
     /* ************************ ACCESSOR ************************* */
 

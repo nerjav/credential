@@ -29,9 +29,9 @@ class UpdateCredential extends FormRequest
             'descripcion' => ['sometimes', 'string'],
             'url' => ['sometimes', 'string'],
             'password' => ['sometimes', 'confirmed', 'min:7', 'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9]).*$/', 'string'],
-            'category_id' => ['sometimes', 'integer'],
-            'service_id' => ['sometimes', 'integer'],
-            
+            'category' => ['sometimes'],
+            'service' => ['sometimes'],
+
         ];
     }
 
@@ -49,4 +49,16 @@ class UpdateCredential extends FormRequest
 
         return $sanitized;
     }
+    public function getCategoryId()
+    {
+        return $this->get('category')['id'];
+    }
+
+
+    public function getServiceId()
+    {
+        return $this->get('service')['id'];
+    }
+
+
 }

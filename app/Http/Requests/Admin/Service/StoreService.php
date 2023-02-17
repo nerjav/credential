@@ -27,8 +27,9 @@ class StoreService extends FormRequest
     {
         return [
             'descripcion' => ['required', 'string'],
-            'state_id' => ['required', 'integer'],
-            
+            'state_id' => ['required'],
+
+
         ];
     }
 
@@ -44,5 +45,10 @@ class StoreService extends FormRequest
         //Add your code for manipulation with request data here
 
         return $sanitized;
+    }
+
+    public function getStateId()
+    {
+        return $this->get('state')['id'];
     }
 }

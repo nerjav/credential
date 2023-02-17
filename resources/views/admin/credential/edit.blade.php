@@ -9,10 +9,12 @@
 
             <credential-form
                 :action="'{{ $credential->resource_url }}'"
+                :category="{{$category->toJson()}}"
+                :service="{{$service->toJson()}}"
                 :data="{{ $credential->toJson() }}"
                 v-cloak
                 inline-template>
-            
+
                 <form class="form-horizontal form-edit" method="post" @submit.prevent="onSubmit" :action="action" novalidate>
 
 
@@ -23,21 +25,21 @@
                     <div class="card-body">
                         @include('admin.credential.components.form-elements')
                     </div>
-                    
-                    
+
+
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary" :disabled="submiting">
                             <i class="fa" :class="submiting ? 'fa-spinner' : 'fa-download'"></i>
                             {{ trans('brackets/admin-ui::admin.btn.save') }}
                         </button>
                     </div>
-                    
+
                 </form>
 
         </credential-form>
 
         </div>
-    
+
 </div>
 
 @endsection

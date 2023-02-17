@@ -30,7 +30,7 @@
                                     </div>
                                     <div class="col-sm-auto form-group ">
                                         <select class="form-control" v-model="pagination.state.per_page">
-                                            
+
                                             <option value="10">10</option>
                                             <option value="25">25</option>
                                             <option value="100">100</option>
@@ -52,7 +52,7 @@
                                         <th is='sortable' :column="'id'">{{ trans('admin.credential.columns.id') }}</th>
                                         <th is='sortable' :column="'descripcion'">{{ trans('admin.credential.columns.descripcion') }}</th>
                                         <th is='sortable' :column="'url'">{{ trans('admin.credential.columns.url') }}</th>
-                                        <th is='sortable' :column="'category_id'">{{ trans('admin.credential.columns.category_id') }}</th>
+                                        <th is='sortable' :column="'name'">{{ trans('admin.credential.columns.category_id') }}</th>
                                         <th is='sortable' :column="'service_id'">{{ trans('admin.credential.columns.service_id') }}</th>
 
                                         <th></th>
@@ -80,9 +80,9 @@
                                     <td>@{{ item.id }}</td>
                                         <td>@{{ item.descripcion }}</td>
                                         <td>@{{ item.url }}</td>
-                                        <td>@{{ item.category_id }}</td>
-                                        <td>@{{ item.service_id }}</td>
-                                        
+                                        <td>@{{ item.category.name}}</td>
+                                        <td>@{{ item.service.descripcion}}</td>
+
                                         <td>
                                             <div class="row no-gutters">
                                                 <div class="col-auto">

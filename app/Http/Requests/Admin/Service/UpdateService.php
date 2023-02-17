@@ -28,7 +28,7 @@ class UpdateService extends FormRequest
         return [
             'descripcion' => ['sometimes', 'string'],
             'state_id' => ['sometimes', 'integer'],
-            
+
         ];
     }
 
@@ -45,5 +45,9 @@ class UpdateService extends FormRequest
         //Add your code for manipulation with request data here
 
         return $sanitized;
+    }
+    public function getStateId()
+    {
+        return $this->get('state')['id'];
     }
 }

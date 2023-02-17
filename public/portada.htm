@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="16x16" href="http://intranet/sistema-gestion-credenciales/assets/images/favicon.png">
+    <title>GestorPass | Gestionar credenciales de accesos</title>
+
+    <script type="text/javascript">
+        var site_url="http://intranet/sistema-gestion-credenciales/index.php";
+        var base_url="http://intranet/sistema-gestion-credenciales/";
+        var resources_url = "http://intranet/sistema-gestion-credenciales/recursos/";
+    </script> 
+
+    <link href="http://intranet/sistema-gestion-credenciales/assets/css/lib/nestable/nestable.css" rel="stylesheet">
+    
+    <link href="http://intranet/sistema-gestion-credenciales/assets/css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="http://intranet/sistema-gestion-credenciales/assets/css/lib/toastr/toastr.min.css" rel="stylesheet">
+    <link href="http://intranet/sistema-gestion-credenciales/assets/css/lib/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="http://intranet/sistema-gestion-credenciales/assets/css/lib/owl.carousel.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="http://intranet/sistema-gestion-credenciales/assets/image-picker-master/image-picker/image-picker.css">
+    <link rel="stylesheet" href="http://intranet/sistema-gestion-credenciales/recursos/slim.min.css">
+
+    <link href="http://intranet/sistema-gestion-credenciales/assets/css/helper.css" rel="stylesheet">
+    <link href="http://intranet/sistema-gestion-credenciales/assets/css/style.css" rel="stylesheet">
+</head>
+
+<body class="fix-header fix-sidebar ">
+    <div class="preloader" style="display:none">
+        <svg class="circular" viewBox="25 25 50 50">
+			<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+    </div>
+    <div id="main-wrapper" class="container">
+        <div class="header">
+            <nav class="navbar top-navbar navbar-expand-md navbar-light">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="http://intranet/sistema-gestion-credenciales/">
+                        <b><img src="http://intranet/sistema-gestion-credenciales/assets/images/logo.png" alt="homepage" class="dark-logo" /></b>
+                        <span><img src="http://intranet/sistema-gestion-credenciales/assets/images/logo-text.png" alt="homepage" class="dark-logo" /></span>
+                    </a>
+                </div>
+                <div class="navbar-collapse">
+                    <ul class="navbar-nav mr-auto mt-md-0">
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted  " href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
+                        <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler hidden-sm-down text-muted  " href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                    </ul>
+                    <ul class="navbar-nav my-lg-0 pt-1">
+                        
+                        <form action="http://intranet/sistema-gestion-credenciales/index.php/buscador/explorar" id='form_editor' class='app-search' method="post" accept-charset="utf-8">
+                            <div class="input-group input-group-rounded mt-2">
+                                <input name="palabra" type="text" class="form-control" value="" placeholder="Buscar en todo el sistema">
+                                <!--<span class="input-group-btn">
+                                    <button class="btn btn-default btn-group-right" style="padding: 8px 12px" type="submit">
+                                        <i class="ti-search"></i>
+                                    </button>
+                                </span>-->
+                            </div>
+                        </form>                        <!--<li class="nav-item hidden-sm-down search-box"> <a class="nav-link hidden-sm-down text-muted  " href="javascript:void(0)"><i class="ti-search f-s-20"></i></a>
+                            <form action="http://intranet/sistema-gestion-credenciales/index.php/buscador/explorar" id='form_editor' class='app-search' method="post" accept-charset="utf-8">
+                                <input name="palabra" type="text" class="form-control" placeholder="Buscar persona, credencial, etc..."> <a class="srh-btn"><i class="ti-close"></i></a>
+                            </form>                        </li>-->
+                        <li class="nav-item dropdown ml-2">
+                            <!--<a class="nav-link dropdown-toggle text-muted text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-bell"></i>
+								<div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
+							</a>-->
+                            <div class="dropdown-menu dropdown-menu-right mailbox animated zoomIn">
+                                <ul>
+                                    <li>
+                                        <div class="drop-title">Notificaciones</div>
+                                    </li>
+                                    <li>
+                                        <div class="message-center">
+                                            <a href="#">
+                                                <div class="btn btn-danger btn-circle m-r-10"><i class="fa fa-link"></i></div>
+                                                <div class="mail-contnet">
+                                                    <h5>Titulo notifiación</h5> <span class="mail-desc">Descripción de la notificación!</span> <span class="time">9:30 AM</span>
+                                                </div>
+                                            </a>
+                                            <a href="#">
+                                                <div class="btn btn-success btn-circle m-r-10"><i class="ti-calendar"></i></div>
+                                                <div class="mail-contnet">
+                                                    <h5>Titulo notifiación</h5> <span class="mail-desc">Descripción de la notificaciónt</span> <span class="time">9:10 AM</span>
+                                                </div>
+                                            </a>
+                                            <a href="#">
+                                                <div class="btn btn-info btn-circle m-r-10"><i class="ti-settings"></i></div>
+                                                <div class="mail-contnet">
+                                                    <h5>Titulo notifiación</h5> <span class="mail-desc">Descripción de la notificación</span> <span class="time">9:08 AM</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link text-center" href="javascript:void(0);"> <strong>Ver todas las notificaciones</strong> <i class="fa fa-angle-right"></i> </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown mt-1">
+                            <a class="nav-link dropdown-toggle text-muted" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ti-user f-s-20 fa-fw"></i></a>
+                            <div class="dropdown-menu dropdown-menu-right animated zoomIn">
+                                <ul class="dropdown-user">
+                                    <li><a href="http://intranet/sistema-gestion-credenciales/personas/ver/9"><i class="ti-user"></i> Nestor Javier Morel Vera</a></li>
+                                    <li><a href="http://intranet/sistema-gestion-credenciales/configuraciones"><i class="ti-settings"></i> Configuraciones</a></li>
+                                    <li><a href="http://intranet/sistema-gestion-credenciales/logout"><i class="fa fa-power-off"></i> Cerrar sesión</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="left-sidebar">
+            <div class="scroll-sidebar">
+                <nav class="sidebar-nav m-t-30">
+                    <ul id="sidebarnav">
+                        <li class="nav-label text-success font-weight-bold">¿Que tal ecabral?</li>
+                        <li> 
+                            <a class="has-arrows" href="http://intranet/sistema-gestion-credenciales/portada" aria-expanded="false"><i class="fa fa-home"></i><span class="hide-menu">Portada</span></a>
+                        </li>
+                        <li class="nav-label">Destacados</li>
+                        <li class="">
+                            <a class="has-arrows" href="http://intranet/sistema-gestion-credenciales/personas/listar/todas"><i class="fa fa-users"></i><span class="hide-menu">Personas / Perfiles</span></a>
+                        </li> 
+                        <li class="">
+                            <a class="has-arrow" href="#" aria-expanded="false"><i class="fa fa-suitcase"></i><span class="hide-menu"><b>Servicios</b></span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li class=""><a class="" href="http://intranet/sistema-gestion-credenciales/credenciales/explorador">Explorar</a></li>
+                                <li class=""><a class="" href="http://intranet/sistema-gestion-credenciales/credenciales/grupos">Grupos (VDC)</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-label"><hr></li>
+                        <li class=" in open">
+                            <a class="has-arrow" href="#" aria-expanded="true"><i class="fa fa-cogs"></i><span class="hide-menu">Mantenimiento</span></a>
+                            <ul aria-expanded="true" class="collapse in">
+                                <li class=""><a href="http://intranet/sistema-gestion-credenciales/usuarios" class="">Usuarios</a></li>
+                                <!--<li class=""><a href="http://intranet/sistema-gestion-credenciales/grupo_usuarios" class="">Grupo de usuarios</a></li>-->
+                                <li class=""><a href="http://intranet/sistema-gestion-credenciales/encriptacion" class="">Encriptación</a></li>
+                                <li class=""><a href="http://intranet/sistema-gestion-credenciales/Servicios" class="">Servicios</a></li>
+                                <li class=""><a href="http://intranet/sistema-gestion-credenciales/tipodatos" class="">Tipos de datos</a></li>
+                                <hr>
+                                <li class=""><a href="http://intranet/sistema-gestion-credenciales/configuraciones" class="">Configuraciones</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="page-wrapper">
+            <script src="http://intranet/sistema-gestion-credenciales/assets/js/lib/jquery/jquery.min.js"></script>
+            <script src="http://intranet/sistema-gestion-credenciales/assets/js/lib/nestable/jquery.nestable.js"></script>
+            <link href="http://intranet/sistema-gestion-credenciales/assets/css/lib/chartist/chartist.min.css" rel="stylesheet">
+<link href="http://intranet/sistema-gestion-credenciales/assets/css/lib/owl.carousel.min.css" rel="stylesheet" />
+<link href="http://intranet/sistema-gestion-credenciales/assets/css/lib/owl.theme.default.min.css" rel="stylesheet" />
+
+<div class="container-fluid">
+    <h1 class="text-center text-muted p-t-50 m-b-30">Hola, Nestor Javier Morel Vera!!!</h1>
+   
+    <div class="row">
+        <div class="col-lg-12">
+            <style>
+                .row.no-gutters {
+                    margin-right: 0;
+                    margin-left: 0;
+                    margin-bottom:6px;
+                }
+                .row.no-gutters > [class^="col-"],
+                .row.no-gutters > [class*=" col-"] {
+                    padding-right: 3px;
+                    padding-left: 3px;
+                    margin-bottom:6px;
+                }
+                .hover:hover{
+                    -webkit-filter: brightness(1.1);
+                    filter: brightness(1.1);
+                }
+            </style>
+            <div class="row no-gutters">
+                <div class="col-md-6 col-sm-6">
+                    <a href="http://intranet/sistema-gestion-credenciales/personas">
+                    <div class="card hover p-30 m-b-0">
+                        <div class="media">
+                            <div class="media-left meida media-middle">
+                                <span><i class="fa fa-users f-s-40 color-primary"></i></span>
+                            </div>
+                            <div class="media-body media-text-right">
+                                <h2>3</h2>
+                                <p class="m-b-0">Personas <br><small>Perfiles</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <a href="http://intranet/sistema-gestion-credenciales/credenciales">
+                    <div class="card hover p-30 m-b-15">
+                        <div class="media">
+                            <div class="media-left meida media-middle">
+                                <span><i class="fa fa-briefcase f-s-40 color-warning"></i></span>
+                            </div>
+                            <div class="media-body media-text-right">
+                                <h2>11</h2>
+                                <p class="m-b-0">Credenciales <br><small>Productos / Servicios</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <a href="http://intranet/sistema-gestion-credenciales/usuarios">
+                    <div class="card bg-primary hover p-20 m-0">
+                        <div class="media widget-ten">
+                            <div class="media-left meida media-middle">
+                                <span><i class="ti-user f-s-20 fa-fw"></i></span>
+                            </div>
+                            <div class="media-body p-l-10">
+                                <p class="m-b-0 m-t-5">Usuarios</p>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <a href="http://intranet/sistema-gestion-credenciales/servicios">
+                    <div class="card bg-warning hover p-20 m-0">
+                        <div class="media widget-ten">
+                            <div class="media-left meida media-middle">
+                                <span><i class="ti-home f-s-20 fa-fw"></i></span>
+                            </div>
+                            <div class="media-body p-l-10">
+                                <p class="m-b-0 m-t-5">Servicios</p>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <a href="http://intranet/sistema-gestion-credenciales/tipodatos">
+                    <div class="card bg-danger hover p-20 m-0">
+                        <div class="media widget-ten">
+                            <div class="media-left meida media-middle">
+                                <span><i class="ti-bookmark f-s-20 fa-fw"></i></span>
+                            </div>
+                            <div class="media-body p-l-10">
+                                <p class="m-b-0 m-t-5">Tipos de datos</p>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <a href="http://intranet/sistema-gestion-credenciales/configuraciones">
+                    <div class="card bg-success hover p-20 m-0">
+                        <div class="media widget-ten">
+                            <div class="media-left meida media-middle">
+                                <span><i class="ti-panel f-s-20 fa-fw"></i></span>
+                            </div>
+                            <div class="media-body p-l-10">
+                                <p class="m-b-0 m-t-5">Configuración</p>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<script src="http://intranet/sistema-gestion-credenciales/assets/js/lib/datamap/d3.min.js"></script>
+<script src="http://intranet/sistema-gestion-credenciales/assets/js/lib/datamap/topojson.js"></script>
+<script src="http://intranet/sistema-gestion-credenciales/assets/js/lib/datamap/datamaps.world.min.js"></script>
+<script src="http://intranet/sistema-gestion-credenciales/assets/js/lib/datamap/datamap-init.js"></script>
+
+<script src="http://intranet/sistema-gestion-credenciales/assets/js/lib/weather/jquery.simpleWeather.min.js"></script>
+<script src="http://intranet/sistema-gestion-credenciales/assets/js/lib/weather/weather-init.js"></script>
+<script src="http://intranet/sistema-gestion-credenciales/assets/js/lib/owl-carousel/owl.carousel.min.js"></script>
+<script src="http://intranet/sistema-gestion-credenciales/assets/js/lib/owl-carousel/owl.carousel-init.js"></script>
+
+
+<script src="http://intranet/sistema-gestion-credenciales/assets/js/lib/chartist/chartist.min.js"></script>
+<script src="http://intranet/sistema-gestion-credenciales/assets/js/lib/chartist/chartist-plugin-tooltip.min.js"></script>
+<script src="http://intranet/sistema-gestion-credenciales/assets/js/lib/chartist/chartist-init.js"></script> 
+        </div>
+    </div>
+
+    <script src="http://intranet/sistema-gestion-credenciales/assets/js/lib/bootstrap/js/popper.min.js"></script>
+    <script src="http://intranet/sistema-gestion-credenciales/assets/js/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="http://intranet/sistema-gestion-credenciales/assets/js/jquery.slimscroll.js"></script>
+    <script src="http://intranet/sistema-gestion-credenciales/assets/js/sidebarmenu.js"></script>
+    <script src="http://intranet/sistema-gestion-credenciales/assets/js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
+    <script src="http://intranet/sistema-gestion-credenciales/assets/js/custom.min.js"></script>
+
+    <script src="http://intranet/sistema-gestion-credenciales/assets/js/lib/datatables/datatables.min.js"></script>
+    <script src="http://intranet/sistema-gestion-credenciales/assets/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="http://intranet/sistema-gestion-credenciales/assets/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/dataTables.responsive.min.js"></script>
+    <script src="http://intranet/sistema-gestion-credenciales/assets/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+    <script src="http://intranet/sistema-gestion-credenciales/assets/js/lib/datatables/cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="http://intranet/sistema-gestion-credenciales/assets/js/lib/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="http://intranet/sistema-gestion-credenciales/assets/js/lib/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="http://intranet/sistema-gestion-credenciales/assets/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+    <script src="http://intranet/sistema-gestion-credenciales/assets/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+    <script src="http://intranet/sistema-gestion-credenciales/assets/js/lib/datatables/cdn.datatables.net/rowreorder/dataTables.rowReorder.min.js"></script>
+
+    <script src="http://intranet/sistema-gestion-credenciales/assets/js/lib/datatables/datatables-init.js"></script>
+
+    <script src="http://intranet/sistema-gestion-credenciales/assets/js/lib/sweetalert/sweetalert.min.js"></script>
+
+    <script src="http://intranet/sistema-gestion-credenciales/assets/image-picker-master/image-picker/image-picker.min.js"></script>
+    <script src="http://intranet/sistema-gestion-credenciales/recursos/slim.kickstart.min.js"></script>
+    <script type="text/javascript">
+        $("#selectimagepicker").imagepicker();
+        $("#selectimagepicker2").imagepicker();
+        $("#selectimagepicker3").imagepicker();
+        $(".selectimagepickerClass").imagepicker();
+    </script>
+
+    <script src="http://intranet/sistema-gestion-credenciales/assets/js/lib/toastr/toastr.min.js"></script>
+    <script src="http://intranet/sistema-gestion-credenciales/assets/js/lib/toastr/toastr.init.js"></script>
+
+    <script src="http://intranet/sistema-gestion-credenciales/assets/js/lib/owl-carousel/owl.carousel.min.js"></script>
+    <script src="http://intranet/sistema-gestion-credenciales/assets/js/lib/owl-carousel/owl.carousel-init.js"></script>
+    
+    <!-- <script src="http://intranet/sistema-gestion-credenciales/assets/js/lib/nestable/nestable.init.js"></script> -->
+
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();   
+            
+                                        var i = function() {
+                    (window.innerWidth > 0 ? window.innerWidth : this.screen.width) < 1170 ? ($("body").addClass("mini-sidebar"),
+                        $(".navbar-brand span").hide(), $(".scroll-sidebar, .slimScrollDiv").css("overflow-x", "visible").parent().css("overflow", "visible"),
+                        $(".sidebartoggler i").addClass("ti-menu")) : ($("body").removeClass("mini-sidebar"),
+                        $(".navbar-brand span").show());
+                    var i = (window.innerHeight > 0 ? window.innerHeight : this.screen.height) - 1;
+                    (i -= 70) < 1 && (i = 1), i > 70 && $(".page-wrapper").css("min-height", i + "px");
+                };
+
+
+                $(window).ready(i), $(window).on("resize", i), $(".sidebartoggler").on("click", function() {
+                        $("body").hasClass("mini-sidebar") ? ($("body").trigger("resize"), $(".scroll-sidebar, .slimScrollDiv").css("overflow", "hidden").parent().css("overflow", "visible"),
+                        $("body").removeClass("mini-sidebar"), $(".navbar-brand span").show()) : ($("body").trigger("resize"),
+                        $(".scroll-sidebar, .slimScrollDiv").css("overflow-x", "visible").parent().css("overflow", "visible"),
+                        $("body").addClass("mini-sidebar"), $(".navbar-brand span").hide());
+                });
+            
+            function notify(titulo, mensaje, tipo){
+                if(tipo == "success"){
+                    toastr.success(mensaje,titulo,{
+                        "positionClass": "toast-top-right",
+                        "timeOut": 5000,
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": true,
+                        "progressBar": true,
+                        "preventDuplicates": true,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut",
+                        "tapToDismiss": false
+                    })
+                }
+                if(tipo == "info"){
+                    toastr.info(mensaje,titulo,{
+                        "positionClass": "toast-top-right",
+                        "timeOut": 5000,
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": true,
+                        "progressBar": true,
+                        "preventDuplicates": true,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut",
+                        "tapToDismiss": false
+                    })
+                }
+                if(tipo == "error"){
+                    toastr.error(mensaje,titulo,{
+                        "positionClass": "toast-top-right",
+                        "timeOut": 5000,
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": true,
+                        "progressBar": true,
+                        "preventDuplicates": true,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut",
+                        "tapToDismiss": false
+                    })
+                }
+                
+            }
+        });
+    </script>
+
+</body>
+
+</html>
+
