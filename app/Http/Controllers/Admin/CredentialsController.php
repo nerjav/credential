@@ -34,6 +34,9 @@ class CredentialsController extends Controller
      */
     public function index(IndexCredential $request)
     {
+        // Obtener el conteo total de registros de la tabla Credential
+        $totalCredentials = Credential::count();
+
         // create and AdminListing instance for a specific model and
         $data = AdminListing::create(Credential::class)->processRequestAndGet(
             // pass the request with params
@@ -55,7 +58,9 @@ class CredentialsController extends Controller
             return ['data' => $data];
         }
 
-        return view('admin.credential.index', ['data' => $data]);
+        return view('admin.credential.index', compact('data'));
+        //return view('nuevo');
+
     }
 
     /**
@@ -177,28 +182,6 @@ class CredentialsController extends Controller
             return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
         }
 
-        return redirect()->back();
-    }
-
-    /**
-     * Remove the specified resources from storage.
-     *
-     * @param BulkDestroyCredential $request
-     * @throws Exception
-     * @return Response|bool
-     */
-    public function bulkDestroy(BulkDestroyCredential $request) : Response
-    {
-        DB::transaction(static function () use ($request) {
-            collect($request->data['ids'])
-                ->chunk(1000)
-                ->each(static function ($bulkChunk) {
-                    Credential::whereIn('id', $bulkChunk)->delete();
-
-                    // TODO your code goes here
-                });
-        });
-
-        return response(['message' => trans('brackets/admin-ui::admin.operation.succeeded')]);
+        return redirect('admin/credentials');
     }
 }

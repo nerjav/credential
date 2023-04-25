@@ -80,7 +80,7 @@ class ServicesController extends Controller
     {
         // Sanitize input
         $sanitized = $request->getSanitized();
-        $sanitized ['service_id']=  $request->getServiceId();
+        //$sanitized ['service_id']=  $request->getServiceId();
         $sanitized ['state_id']=  $request->getStateId();
 
         // Store the Service

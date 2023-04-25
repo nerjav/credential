@@ -27,7 +27,7 @@ class StoreState extends FormRequest
     {
         return [
             'name' => ['required', 'string'],
-            
+
         ];
     }
 

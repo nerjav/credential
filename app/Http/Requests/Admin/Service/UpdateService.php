@@ -27,7 +27,7 @@ class UpdateService extends FormRequest
     {
         return [
             'descripcion' => ['sometimes', 'string'],
-            'state_id' => ['sometimes', 'integer'],
+            'state' => ['sometimes', 'integer'],
 
         ];
     }

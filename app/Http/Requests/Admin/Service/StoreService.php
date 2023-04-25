@@ -27,7 +27,7 @@ class StoreService extends FormRequest
     {
         return [
             'descripcion' => ['required', 'string'],
-            'state_id' => ['required'],
+            'state' => [''],
 
 
         ];
